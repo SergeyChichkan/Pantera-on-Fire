@@ -11,7 +11,6 @@ public class Player : MonoBehaviour {
 
     void Awake()
     {
-        Screen.SetResolution(480, 720, true);
         lose = false;
         ButtonClick = gameObject.GetComponent<AudioSource>();   
     }
