@@ -5,14 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class Contacts_Controller : MonoBehaviour {
 
+    public GameObject Help;
+    private AudioSource ButtonClick;
+
+    void Awake()
+    {
+        ButtonClick = gameObject.GetComponent<AudioSource>();
+    }
+
+    public void Help_Button()
+    {
+        ButtonClick.Play();
+        Help.SetActive(Help.active == false ? true : false);
+
+        //Help.active = Help.active == false ? true : false;
+    }
+
     public void Website_Button()
     {
         Application.OpenURL("https://fireshow-pantera.com/");
-    }
-
-    public void Back_Button()
-    {
-        SceneManager.LoadScene("MainMenu_1");
     }
 
     public void Kyivstar_Button()
@@ -42,10 +53,43 @@ public class Contacts_Controller : MonoBehaviour {
         TouchScreenKeyboard.Open("pantera.ct@gmail.com", TouchScreenKeyboardType.EmailAddress, true, false, false);
     }
 
+    public void Facebook_Button()
+    {
+        Application.OpenURL("https://www.facebook.com/fireshowpantera");
+    }
+
+    public void Instagram_Button()
+    {
+        Application.OpenURL("https://www.instagram.com/fireshow_pantera/");
+    }
+
+    public void Youtube_Button()
+    {
+        Application.OpenURL("https://www.youtube.com/c/PanteraCt");
+    }
+
+    public void VK_Button()
+    {
+        Application.OpenURL("https://vk.com/fireshow_pantera");
+    }
+
+    public void Back_Button()
+    {
+        ButtonClick.Play();
+        SceneManager.LoadScene("MainMenu_1");
+        ButtonClick.Play();
+    }
+
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.Home) || Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Menu))
-            SceneManager.LoadScene("MainMenu_1");
+        if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Menu)) 
+        {
+            if (Help.active == true)
+                Help.SetActive(false);
+            else
+                SceneManager.LoadScene("MainMenu_1");
+        }
+           // SceneManager.LoadScene("MainMenu_1");
     }
 }

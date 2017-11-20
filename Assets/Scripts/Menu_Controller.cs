@@ -4,15 +4,24 @@ using UnityEngine.SceneManagement;
 
 public class Menu_Controller : MonoBehaviour {
 
+    private AudioSource ButtonClick;
+
+    void Awake() {
+        ButtonClick = gameObject.GetComponent<AudioSource>();   
+    }
+
 	public void Game_Start () {
+        ButtonClick.Play();
         SceneManager.LoadScene("Game_1");
 	}
 
     public void Contacts_Scene() {
+        ButtonClick.Play();
         SceneManager.LoadScene("Contacts_1");
     }
 
     public void Quit_Scene() {
+        ButtonClick.Play();
         Application.Quit ();
     }
 
